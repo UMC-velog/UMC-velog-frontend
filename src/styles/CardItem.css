@@ -1,0 +1,118 @@
+.CardItem{
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, .04);
+    width: 20rem;
+    margin: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow .25s ease-in,transform .25s ease-in;
+}
+.CardItem:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 12px 20px 0 rgba(0,0,0,.08);
+}
+.CardItem .image_section{
+    display: block;
+    color: inherit;
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    padding-top: 52.1921%;
+}
+.CardItem .image_section img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+.CardItem .content_section{
+    padding: 1rem; 
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    text-align: left;
+}
+.CardItem .content_section .post_title{
+    cursor: pointer;
+    /* font-size: 1rem; */
+    font-size: 16px;
+    margin: 0 0 0.25rem;
+    line-height: 1.5;
+    color: #212529;
+    white-space: nowrap; 
+    overflow-x: hidden;  
+    text-overflow: ellipsis;
+}
+.CardItem .content_section .post_content{
+    cursor: pointer;
+    overflow: hidden;    
+    text-overflow: ellipsis;
+    /* font-size: .875rem; */
+    font-size: 14px;
+    line-height: 1.5;
+    color:#495057;
+    margin: 0 0 1.5rem;
+    height: 3.9375rem;
+}
+.CardItem .content_section .post_info{
+    display: flex;
+    font-size: .75rem;
+    line-height: 1.5;
+    color: #868e96;
+}
+.CardItem .post_info span{
+    margin-right: 0.25rem;
+}
+.CardItem .user_section{
+    padding: 0.625rem 1rem;
+    border-top: 1px solid #f1f3f5;
+    display: flex;
+    font-size: .75rem;
+    line-height: 1.5;
+    justify-content: space-between;
+}
+.CardItem .user_section .left_col{
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.CardItem .user_section img{
+    object-fit: cover;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+    margin-right: 0.5rem;    
+}
+.CardItem .user_section .username b{
+    color: #212529;
+    margin-left: 5px;
+}
+.CardItem .user_section .right_col{
+    display: flex;
+    align-items: center;
+    color: #212529;
+}
+.CardItem .right_col svg{
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-right: 0.5rem;
+}
+@media screen and (max-width: 1056px) {
+    .CardItem{
+        width: calc(50% - 2rem);
+    }
+}
+@media screen and (max-width: 767px) {
+    .CardItem{
+        margin: 0;
+        width: 100%;
+    }
+}

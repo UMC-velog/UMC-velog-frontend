@@ -1,0 +1,73 @@
+.Header{
+    width: 100%;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.Header .header_left{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Fira Mono, monospace;
+    font-size: 20px;
+    height: 100%;
+    line-height: 10px;
+}
+.Header .header_left svg{
+    height: 1.25rem;
+}
+.Header .header_right{
+    display: flex;
+    align-items: center;
+    /* position: relative; */
+    height: 40px;
+}
+.Header .header_icon_themeToggle{
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 0.25rem;
+    background-color: transparent;
+    /* position: relative; */
+}
+.Header .header_icon_search{
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-right: 8px;
+    background-color: transparent;
+}
+.Header .header_icon_themeToggle:hover{
+    background-color: #ebeced;
+}
+.Header .header_icon_search:hover{
+    background-color: #ebeced;
+}
+.Header .header_icon_search svg{
+    width: 18px;
+    margin: auto;
+}
+.Header .btn_login{
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    height: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border: none;
+    border-radius: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 16px;
+}
