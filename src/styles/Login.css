@@ -5,7 +5,11 @@
     display: flex;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.09);
 }
-
+.ReactModal__Overlay--after-open{
+    position: fixed;
+    inset: 0;
+    background-color: hsla(0,0%,98%,.85);
+}
 element.style{
     padding: 0;
 }
@@ -69,12 +73,12 @@ element.style{
     margin: 18px 0 18px 0;
     color: #868e96;
 }
-.Login .upper_wrapper .by_email{
+.Login .upper_wrapper .authEmailForm{
     width: 100%;
     display: flex;
     height: 3rem;
 }
-.Login .by_email input{
+.Login .authEmailForm input{
     flex: 1 1;
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
@@ -86,7 +90,7 @@ element.style{
     border-right: none;
     outline: none;
 }
-.Login .by_email .btn_login{
+.Login .authEmailForm .btn_login{
     background-color: #12b886;
     color: #fff;
     font-size: 1rem;
@@ -99,10 +103,29 @@ element.style{
     word-break: keep-all;
     cursor: pointer;
 }
-.Login .upper_wrapper .by_social{
+.Login .authEmailSuccess{
+    display: flex;
+    align-items: center;
+    background-color: #c3fae8;
+    border: 1px solid #96f2d7;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    height: 3rem;
+    color: #087f5b;
+    white-space: pre;
+}
+.Login .authEmailSuccess svg{
+    font-size: 1.5rem;
+}
+.Login .authEmailSuccess span{
+    font-size: .875rem;
+    flex: 1 1;
+    text-align: center;
+}
+.Login .upper_wrapper .social_login{
     margin-top: 2.5rem;
 }
-.Login .by_social .buttons{
+.Login .social_login .buttons{
     display: flex;
     justify-content: space-around;
     margin-top: calc(1.5rem + 2px);
@@ -137,7 +160,6 @@ right: 0;
 }
 .Login .go_signup span{
     margin-right: 0.25rem;
-    color: black;
 }
 .Login .go_signup .btn_signup{    
     display: inline-block;

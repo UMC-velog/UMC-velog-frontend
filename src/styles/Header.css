@@ -18,7 +18,8 @@
     line-height: 10px;
 }
 .Header .header_left svg{
-    height: 1.25rem;
+    color: #212529;
+    height: 24px;
 }
 .Header .header_right{
     display: flex;
@@ -34,7 +35,8 @@
     height: 2.5rem;
     margin-right: 0.25rem;
     background-color: transparent;
-    /* position: relative; */
+    position: relative;
+    color: #212529;
 }
 .Header .header_icon_search{
     cursor: pointer;
@@ -47,6 +49,7 @@
     height: 2.5rem;
     margin-right: 8px;
     background-color: transparent;
+    color: #212529;
 }
 .Header .header_icon_themeToggle:hover{
     background-color: #ebeced;
@@ -58,7 +61,7 @@
     width: 18px;
     margin: auto;
 }
-.Header .btn_login{
+.Header .header_btn_login button{
     cursor: pointer;
     background-color: black;
     color: white;
@@ -70,4 +73,66 @@
     font-family: inherit;
     font-weight: bold;
     font-size: 16px;
+}
+.Header .header_image_profile{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.Header .header_image_profile img{
+    display: block;
+    height: 2.5rem;
+    width: 2.5rem;
+    box-shadow: 0 0 8px rgba(0,0,0,.085);
+    border-radius: 50%;
+    transition: all .125s ease-in;
+}
+.Header .header_image_profile svg{
+    font-size: 1.5rem;
+    margin-left: 0.25rem;
+    color: #868e96;
+    transition: all .125s ease-in;
+    margin-right: -0.4375rem;
+}
+.Header .HeaderUserMenu_block{
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin: 0;
+    margin-top: 1rem;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+.Header .HeaderUserMenu_menu-wrapper{
+    position: relative;
+    z-index: 5;
+    width: 12rem;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(0,0,0,.1);
+    text-align: left;
+}
+.Header .HeaderUserMenu_menu-wrapper ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.Header .HeaderUserMenu_menu-wrapper li{
+    cursor: pointer;
+    color: #212529;
+    padding: 0.75rem 1rem;
+    line-height: 1.5;
+    font-weight: 500;
+    cursor: pointer;
+}
+.Header .HeaderUserMenu_menu-wrapper li:hover{
+    background-color: #f8f9fa;
+    color: #12b886;
+}
+@media screen and (max-width: 1024px) {
+    .Header .header_left svg{
+        height: 20px;
+    }
 }

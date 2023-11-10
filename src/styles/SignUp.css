@@ -1,0 +1,172 @@
+.SignUp{
+    width: 768px;
+    margin: 100px auto 0px;
+    line-height: 1.5;
+    text-align: start; 
+    box-sizing: inherit;
+}
+.SignUp h1{
+    font-size: 4rem;
+    color: #212529;
+    font-weight: bolder;
+    margin: 0px;
+}
+.SignUp .description{
+    font-size: 1.5rem;
+    color: #212529;
+
+}
+.SignUp .container{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+.SignUp .input_box label{
+    font-weight: bold;
+    font-size: 1.125rem;
+    color: #212529;
+    margin-bottom: 1rem;
+    display: block;
+}
+.SignUp .group{
+    display: inline-block;
+    max-width: 100%;
+    box-sizing: inherit;
+}
+.SignUp .input_wrapper{
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #ADB5BD;
+    display: flex;
+    align-items: center;
+    box-sizing: inherit;
+}
+.SignUp .input_wrapper input{
+    background: transparent;
+    font-size: 1.5rem;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #495057;
+    transition: all 0.125s ease-in 0s;
+    display: block;
+    line-height: 1.5;
+}.SignUp .input_wrapper input:disabled{
+    color: #868E96;
+}
+.SignUp .input_wrapper svg{
+    font-size: 1.5rem;
+    color: #868E96;
+}
+.SignUp .width-maker {
+    max-width: 100%;
+    display: inline-block;
+    visibility: hidden;
+    font-size: 1.5rem;
+    overflow: hidden;
+    line-height: 0;
+    box-sizing: inherit;
+}
+.SignUp .termsandconditions{
+    display: flex;
+    align-items: center;
+    color: #212529;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+.SignUp .checkbox_wrapper{
+    position: relative;
+}
+.SignUp .checkbox_wrapper .checkbox_false {
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid #ADB5BD;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+.SignUp .checkbox_wrapper .checkbox_true {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 4px;
+    background: #12B886;
+    border: 1px solid #12B886;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.SignUp .checkbox_wrapper svg{
+    position: absolute;
+    top: 0.4rem;
+    left: 0.35rem;
+    color: white;
+    width: 1rem;
+    height: 1rem;
+}
+.SignUp span{
+    display: flex;
+}
+.SignUp .text_green{
+    color: #12B886;
+    text-decoration: underline;
+    padding: 0;
+    margin: 0;
+}
+
+/*bottom*/
+.SignUp .form_bottom{
+    margin-top: 6rem;
+}
+.SignUp .form_bottom .text_error{
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    color: rgb(255, 107, 107);
+    font-weight: bold;
+}
+.SignUp .buttons .btn_back{
+    height: 3rem;
+    font-size: 1.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-radius: 1.5rem;
+    font-weight: bold;
+    transition: all 0.125s ease-in 0s;
+    cursor: pointer;
+    background-color: #DEE2E6;
+    color: #212529;
+    border: none;
+    outline: none;
+}
+.SignUp .buttons .btn_submit{
+    height: 3rem;
+    font-size: 1.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-radius: 1.5rem;
+    font-weight: bold;
+    transition: all 0.125s ease-in 0s;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #12B886;
+    color: #FFFFFF;  
+    margin-left: 16px;  
+}
+@media screen and (max-width: 768px) {
+    .SignUp{
+        width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        margin-top: 4rem;
+    }
+    .SignUp h1{
+        font-size: 3rem;
+    }
+    .SignUp .description{
+        font-size: 1rem;
+    }
+    .SignUp .input_wrapper input{
+        font-size: 1.125rem;
+    }
+}
