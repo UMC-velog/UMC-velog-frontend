@@ -2,9 +2,10 @@ import "../styles/Main.css";
 import Header from "../components/Header";
 import CardItem from "../components/CardItem";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const mockData = [
-    {
+    { 
         id: 1,
         image: 'https://velog.velcdn.com/images/superlipbalm/post/66653c71-50d8-47e9-b917-1838c64cd2a7/image.jpeg',
         title: '(번역) 자바스크립트에서 base64 문자열 인코딩의 미묘한 차이',
@@ -56,39 +57,28 @@ const mockData = [
     },
 ]
 const Main = () => {
-    // const [isThemeDark, setIsThemeDark] = useState(false);
-    
-    // const toggleTheme = () => {
-    //     if(isThemeDark){
-    //         setIsThemeDark(false);
-    //     }else{
-    //         setIsThemeDark(true);
-    //     }
-    // }
-    // const themeStyle = {
-    //     backgroundColor: isThemeDark ? 'black' : '#f8f9fa',
-    //     color: isThemeDark ? 'white' : 'black',
-    // };
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSelectorOpen, setIsSelectorOpen] = useState(false);
 
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutside);
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        }
+    }, [isMenuOpen, isSelectorOpen]);
+
+    const handleClickOutside = (event) => {
+        if((isSelectorOpen && !event.target.closest('.homeTab_selector'))
+            || (isMenuOpen && !event.target.closest('.homeTab_right'))){
+            setIsMenuOpen(false);
+            setIsSelectorOpen(false);
+        }
+    }
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
     const toggleSelector = () => {
         setIsSelectorOpen(!isSelectorOpen);
-    };
-
-    const style1 = {
-        content: {
-            opacity: "1",
-            transform: "scale(1)",
-        }
-    };
-    const style2 = {
-        content: {
-            color: "transparent",
-        }
     };
 
     return(
@@ -110,14 +100,16 @@ const Main = () => {
                             </div>
                         </div>
                         <div className="homeTab_selector" >
-                            <a onClick={toggleSelector}>이번 주</a>
-                            <svg onClick={toggleSelector} stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M7 10l5 5 5-5z"></path></svg>
-                            {isSelectorOpen && <div className="TimeframePicker_aligner" style={style1}><div className="TimeframePicker_block" onClick={toggleSelector}><ul><li>오늘</li><li className="focused">이번 주</li><li>이번 달</li><li>올해</li></ul></div></div>}
+                            <div className="btn_selector" onClick={toggleSelector}>                                
+                                <a>이번 주</a>
+                                <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M7 10l5 5 5-5z"></path></svg>
+                            </div>
+                            {isSelectorOpen && <div className="TimeframePicker_aligner" ><div className="TimeframePicker_block" onClick={toggleSelector}><ul><li>오늘</li><li className="focused">이번 주</li><li>이번 달</li><li>올해</li></ul></div></div>}
                         </div>
                     </div>
                     <div className="homeTab_right">
                         <svg onClick={toggleMenu} stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0z"></path><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg>
-                        {isMenuOpen && <div className="HomeMoreButton_aligner" style={style1}><div className="HomeMoreButton_block"><ul><li>공지사항</li><li>태그 목록</li><li>서비스 정책</li><li>Slack</li></ul><div className="HomeMoreButton_contact"><h5>문의</h5><div className="HomeMoreButton_email">contact@velog.io</div></div><div className="HomeMoreButton_graphCdn"><img alt="Powered by GraphCDN, the GraphQL CDN" loading="lazy" width="120" height="53" decoding="async" data-nimg="1" src="https://graphcdn.io/badge.svg" style={style2}/></div></div></div>}
+                        {isMenuOpen && <div className="HomeMoreButton_aligner" ><div className="HomeMoreButton_block"><ul><li>공지사항</li><li>태그 목록</li><li>서비스 정책</li><li>Slack</li></ul><div className="HomeMoreButton_contact"><h5>문의</h5><div className="HomeMoreButton_email">contact@velog.io</div></div><div className="HomeMoreButton_graphCdn"><img alt="Powered by GraphCDN, the GraphQL CDN" loading="lazy" width="120" height="53" decoding="async" data-nimg="1" src="https://graphcdn.io/badge.svg" /></div></div></div>}
                     </div>
                 </div>                
                 <div className="postCards">
