@@ -1,5 +1,6 @@
 import "../styles/Login.css";
 import { useState } from "react";
+import axios from "axios";
 
 const Login = ({closeModal}) => {
     const [isLogin, setIsLogin] = useState(true);
