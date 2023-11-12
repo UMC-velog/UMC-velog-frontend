@@ -53,7 +53,7 @@ const Post = () => {
     return(
         <div className="Post">
             <div className="header">
-                <Header />
+                <Header isPost={true} username={username}/>
             </div>
             <div className="head_container">
                 <div className="head_wrapper">
