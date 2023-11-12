@@ -1,0 +1,78 @@
+.CommentItem{
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+.CommentItem .profile_wrapper{
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.CommentItem .profile{
+    display: flex;
+    align-items: center;
+}
+.CommentItem .profile .image_section img{
+    width: 3.375rem;
+    height: 3.375rem;
+    display: block;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+.CommentItem .profile .info_section{
+    margin-left: 1rem;
+    line-height: 1;
+}
+.CommentItem .info_section .username{
+    font-size: 1rem;
+    font-weight: bold;
+    color: #212529;
+    cursor: pointer;
+}
+.CommentItem .info_section .date{
+    margin-top: 0.5rem;
+    color: #868E96;
+    font-size: 0.875rem;
+}
+.CommentItem .content{
+    font-size: 1.125rem;
+    color: #212529;
+    transition: color 0.125s ease-in 0s;
+    line-height: 1.7;
+    letter-spacing: -0.004em;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+}
+.CommentItem .reply_wrapper{
+    margin-top: 2rem;
+}
+.CommentItem .reply_wrapper .reply{
+    display: inline-flex;
+    align-items: center;
+    color: #12B886;
+    font-weight: bold;
+    cursor: pointer;
+}
+.CommentItem .reply svg{
+    margin-right: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .CommentItem .profile .image_section img{
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+    .CommentItem .profile .info_section{
+        margin-left: 0.5rem;
+    }
+    .CommentItem .profile .info_section .username{
+        font-size: 0.875rem;
+    }
+    .CommentItem .profile .info_section .date{
+        font-size: 0.75rem;
+    }
+    .CommentItem .content{
+        font-size: 1rem;
+    }
+}
