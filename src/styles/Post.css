@@ -1,0 +1,408 @@
+.Post{
+    /* display: flex; */
+    /* justify-content: center; */
+    /* width: 100%; */
+    /* height: 100%; */
+    /* flex-flow: column nowrap; */
+    /* margin-bottom: 4rem; */
+    text-align: start;
+    padding-bottom: 4rem;
+}
+.Post .header{
+    width: 100%;
+    margin: 0 auto;    
+}
+/*head*/
+.Post .head_container{
+    width: 768px;
+    margin-top: 5.5rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+.Post .head_wrapper h1{
+    font-size: 3rem;
+    line-height: 1.5;
+    letter-spacing: -0.004em;
+    margin-top: 0px;
+    font-weight: 800;
+    color: #212529;
+    margin-bottom: 2rem;
+    word-break: keep-all;
+    transition: color 0.125s ease-in 0s;
+}
+.Post .post_info{
+    align-items: center;
+    font-size: 1rem;
+    color: #495057;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+.Post .post_info .left_col .username{
+    color: #212529;
+    font-weight: bold;
+}
+.Post .post_info .left_col .separator{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+.Post .right_col{
+    align-items: center;
+    display: none;
+}
+.Post .right_col button{
+    background: #FFFFFF;
+    border: 1px solid #ADB5BD;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    display: flex;
+    align-items: center;
+    height: 1.5rem;
+    border-radius: 0.75rem;
+    outline: none;
+}
+.Post .right_col svg{
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-right: 0.75rem;
+    color: #868E96;
+}
+.Post .right_col span {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #868E96;
+}
+.Post .head_margin{    
+    margin-top: 0.875rem;
+    margin-bottom: -0.875rem;
+    min-height: 0.875rem;
+}
+
+/*content*/
+.Post .contents_container{
+    width: calc(768px - 2rem);
+    margin: 5rem auto 0px;
+}
+.Post .contents_wrapper{
+    font-size: 1.125rem;
+    color: 212529;
+    transition: color 0.125s ease-in 0s;
+    line-height: 1.7;
+    letter-spacing: -0.004em;
+    overflow-wrap: break-word;
+}
+
+/*profile card*/
+.Post .profileCard_container{
+    width: calc(768px - 2rem);
+    margin-top: 16rem;
+    margin-bottom: 6rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+.Post .profileCard_wrapper{
+    width: calc(100% - 2rem);
+}
+.Post .profileCard_wrapper .profile{
+    display: flex;
+    align-items: center;
+}
+.Post .profile .image_section img{
+    cursor: pointer;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 4px 0px;
+}
+.Post .profile .info_section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 1rem;
+}
+.Post .profile .info_section .name{
+    cursor: pointer;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    font-weight: bold;
+    color: #212529;
+}
+.Post .profile .info_section .name:hover{
+    color: #212529;
+    text-decoration: underline;
+}
+.Post .profile .info_section .intro{
+    white-space: pre-wrap;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    margin-top: 0.25rem;
+    color: #495057;
+    letter-spacing: -0.004em;
+}
+.Post .profileCard_wrapper .line{
+    background: #E9ECEF;
+    height: 1px;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+.Post .profileCard_wrapper .social_icons{
+    display: flex;
+}
+.Post .social_icons svg{
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
+    color: #868E96;
+}
+
+/*other posts*/
+.Post .otherPosts_container{
+    width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3rem;
+    display: flex;
+}
+.Post .otherPosts_container .post_previous{
+    flex: 1 1 0%;
+    cursor: pointer;
+    background: #F8F9FA;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 4px 0px;
+    width: 100%;
+    min-width: 0px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+.Post .otherPosts_container .post_next{
+    margin-left: 3rem;
+    min-width: 0px;
+    flex: 1 1 0%;
+    cursor: pointer;
+    background: #F8F9FA;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 4px 0px;
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-direction: row-reverse;
+}
+.Post .otherPosts_container .button_section{
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #20C997;
+    font-size: 1.5rem;
+    color: #20C997;
+    margin-right: 1rem;
+}
+.Post .otherPosts_container .post_next .button_section{
+    margin-left: 1rem;
+    margin-right: 0;
+}
+.Post .otherPosts_container .text_section{
+    flex: 1 1 0%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    line-height: 1;
+    min-width: 0px;
+}
+.Post .post_next .text_section{
+    align-items: end;
+    text-align: end;
+}
+.Post .otherPosts_container .description{
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #495057;
+}
+.Post .otherPosts_container h3{
+    width: 100%;
+    font-size: 1.125rem;
+    color: #495057;
+    line-height: 1.15;
+    margin: 0.5rem 0px 0px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/*comments*/
+.Post .comments_container{
+    margin-top: 3rem;
+    color: #212529;
+    width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.Post .comments_container h4{
+    font-size: 1.125rem;
+    line-height: 1.5;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+.Post .create_comment textarea{
+    height: 70px;
+    resize: none;
+    padding: 1rem 1rem 1.5rem;
+    outline: none;
+    border: 1px solid #F1F3F5;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    border-radius: 4px;
+    min-height: 6.125rem;
+    font-size: 1rem;
+    color: #212529;
+    line-height: 1.75;
+    background: #FFFFFF;
+    font-family: inherit;
+}
+.Post .create_comment .button_wrapper{
+    display: flex;
+    justify-content: flex-end;
+}
+.Post .create_comment button{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: #12B886;
+    color: #FFFFFF;
+    border-radius: 4px;
+    padding: 0px 1.25rem;
+    height: 2rem;
+    font-size: 1rem;
+}
+.Post .view_comments {
+    margin-top: 2.5rem;
+}
+@media (max-width: 1024px) {
+    .Post .head_container{
+        margin-top: 2rem;
+    }
+    .Post .head_wrapper{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .Post .head_wrapper h1{
+        font-size: 2.25rem;
+    }
+    .Post .right_col{
+        display: flex;
+    }
+    .Post .contents_container{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }    
+    .Post .profileCard_container{
+        margin-top: 8rem;
+        margin-bottom: 6rem;
+    }
+    .Post .profileCard_wrapper{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+@media (max-width: 768px) {
+    .Post{
+        width: 100%;
+    }
+    .Post .head_container{
+        width: 100%
+    }
+    .Post .head_wrapper .post_info{
+        margin-bottom: 0.75rem;
+    }
+    .Post .head_wrapper .post_info .left_col{
+        font-size: 0.875rem;
+    }
+    .Post .head_margin{ 
+        margin-top: 0.5rem;
+        margin-bottom: -0.5rem;
+        min-height: 0.5rem;
+    }
+    .Post .contents_container {
+        width: calc(100% - 2rem);
+    }
+    .Post .contents_wrapper {
+        font-size: 1rem;
+    }
+    .Post .profileCard_container{
+        width: 100%;
+        margin-top: 2rem;
+    }
+    .Post .profileCard_wrapper {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .Post .profileCard_wrapper .profile{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .Post .profileCard_wrapper .profile img {
+        width: 5rem;
+        height: 5rem;
+    }
+    .Post .profileCard_wrapper .profile .info_section {
+        margin-left: 0px;
+        margin-top: 1rem;
+    }
+    .Post .profile .info_section .name{
+        font-size: 1.125rem;
+    }
+    .Post .profile .info_section .intro{
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+        letter-spacing: -0.004em;
+    }
+    .Post .profileCard_wrapper .line{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    .Post .otherPosts_container {
+        width: calc(100% - 2rem);
+        flex-direction: column-reverse;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .Post .otherPosts_container .post_previous{
+        flex: initial;
+        width: calc(100% - 2rem);
+    }
+    .Post .otherPosts_container .post_next{
+        flex: initial;
+        width: calc(100% - 2rem);
+    }
+    .Post .otherPosts_container h3 {
+        font-size: 1rem;
+    }
+    .Post .otherPosts_container .post_next {
+        margin-left: 0px;
+        margin-bottom: 1.5rem;
+    }
+    .Post .comments_container {
+        width: calc(100% - 2rem);
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .Post .create_comment textarea{
+        width: calc(100% - 2rem);
+        margin-bottom: 1rem;
+    }
+}
