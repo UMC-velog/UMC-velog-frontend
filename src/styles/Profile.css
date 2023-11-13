@@ -1,0 +1,201 @@
+.Profile .container{
+    width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+}
+/*profile card*/
+.Profile .container .profile_wrapper{
+    margin-top: 5.625rem;
+}
+.Profile .profile_wrapper .profile{
+    display: flex;
+    align-items: center;
+}
+.Profile .profile .image_section img{
+    cursor: pointer;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 4px 0px;
+}
+.Profile .profile .info_section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 1rem;
+    text-align: left;
+}
+.Profile .info_section .name{
+    cursor: pointer;
+    font-size: 1.5rem;
+    line-height: 1.5;
+    font-weight: bold;
+    color: #212529;
+}
+.Profile .info_section .intro{
+    white-space: pre-wrap;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    margin-top: 0.25rem;
+    color: #495057;
+    letter-spacing: -0.004em;
+}
+.Profile .profile_wrapper .line{
+    background: #E9ECEF;
+    width: 100%;
+    height: 1px;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+.Profile .container .gap{
+    background: #F8F9FA;
+    height: 1rem;
+    margin-top: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 8px 8px -8px inset, rgba(0, 0, 0, 0.04) 0px -8px 8px -8px inset;
+    display: none;
+}
+/*category*/
+.Profile .container .category_wrapper{
+    margin-top: 4.5rem;
+    margin-bottom: 4.5rem;
+    display: flex;
+    justify-content: center;
+}
+.Profile .container .category{
+    display: flex;
+    position: relative;
+}
+.Profile .category div{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.325rem;
+    width: 8rem;
+    height: 3rem;
+    color: #495057;
+    text-decoration: none;
+    transition: color 0.25s ease-in-out 0s;
+    font-weight: 600;
+}
+.Profile .category .posts{
+    color: #20C997;
+}
+.Profile .category .underline{
+    left: 0%;
+    width: 8rem;
+    height: 2px;
+    background: #20C997;
+    position: absolute;
+    bottom: -2px;
+    transition: left 0.25s ease-in-out 0s;
+}
+/*search*/
+.Profile .container .search_wrapper{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2rem;
+}
+.Profile .search_wrapper .search{
+    display: flex;
+    /* height: 2.25rem; */
+    height: 2rem;
+    border: 1px solid #ADB5BD;
+    padding-left: 0.625rem;
+    /* padding-right: 0.625rem; */
+    align-items: center;
+    transition: all 0.125s ease-in 0s;
+    cursor: text;
+}
+.Profile .search svg{
+    transition: all 0.125s ease-in 0s;
+    margin-right: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    fill: rgb(173, 181, 189);
+    flex-shrink: 0;
+}
+.Profile .search input{
+    transition: all 0.125s ease-in 0s;
+    font-size: 0.875rem;
+    flex: 1 1 0%;
+    display: block;
+    line-height: 1rem;
+    height: 1rem;
+    padding: 0px;
+    border: none;
+    outline: 0px;
+    background: transparent;
+    color: #495057;
+    min-width: 0px;
+}
+
+
+@media screen and (max-width: 1024px){
+    .Profile .container .profile_wrapper{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .Profile .container .search_wrapper{
+        display: none;
+    }
+}
+@media screen and (max-width: 768px){
+    .Profile .container{
+        width: 100%;
+    }
+    .Profile .container .profile_wrapper{
+        margin-top: 3rem;
+    }
+    .Profile .profile_wrapper .profile{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .Profile .profile .image_section img{
+        width: 5rem;
+        height: 5rem;
+    }
+    .Profile .profile .info_section{
+        margin-left: 0px;
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+    .Profile .info_section .name{
+        font-size: 1.125rem;
+    }
+    .Profile .info_section .intro{
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+        letter-spacing: -0.004em;
+    }
+    .Profile .profile .line{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    .Profile .container .gap{
+        display: block;
+    }
+    .Profile .container .category_wrapper{
+        margin-top: 0px;
+        margin-bottom: 1.5rem;
+    }
+    .Profile .container .category{
+        width: 100%;
+    }
+    .Profile .category div{
+        flex: 1 1 0%;
+        font-size: 1rem;
+        height: 2.5rem;
+    }
+    .Profile .category .underline{
+        width: 33.3333%;
+    }
+    .Profile .container .posts{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
