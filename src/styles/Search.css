@@ -22,6 +22,9 @@
     margin-bottom: 1.5rem;
     transition: all 0.125s ease-in 0s;
 }
+.Search .searchBar.true{
+    border: 1px solid #ADB5BD;
+}
 .Search .searchBar svg{
     width: 1.5rem;
     height: 1.5rem;
