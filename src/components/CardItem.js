@@ -1,7 +1,6 @@
 import "../styles/CardItem.css";
 
 const CardItem = ({image, title, content, date, comments, userName, heartNum}) => {
-    const tProfileImg = 'https://velog.velcdn.com/images/greencloud/profile/0c3223ce-47f4-4e04-b9ce-1a75949c73f4/image.PNG';
     return(
         <div className="CardItem">
             <div className="image_section">
@@ -18,7 +17,7 @@ const CardItem = ({image, title, content, date, comments, userName, heartNum}) =
             </div>
             <div className="user_section">
                 <div className="left_col">
-                    <img alt={userName} src={tProfileImg}/>
+                    <img alt={userName} src='https://velog.io/images/user-thumbnail.png'/>
                     <span className="username">
                         by
                         <b>{userName}</b>
