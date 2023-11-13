@@ -7,14 +7,16 @@ import Post from './pages/Post.js';
 import Profile from './pages/Profile.js';
 import Search from './pages/Search.js';
 import SignUp from './pages/SignUp.js';
+import Write from './pages/Write.js';
 
 function App() {
   return (
     <div className="App">
       <Routes>
         <Route path = "/" element={<Main/>}/>
+        <Route path = "/write" element={<Write/>}/>
         <Route path = "/:userId/:postTitle" element={<Post/>}/>
-        <Route path = "/profile" element={<Profile/>}/>
+        <Route path = "/:userId" element={<Profile/>}/>
         <Route path = "/search" element={<Search/>}/>
         <Route path = "/register" element={<SignUp/>}/>
       </Routes>
