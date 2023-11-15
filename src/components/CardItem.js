@@ -1,8 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import "../styles/CardItem.css";
 
-const CardItem = ({image, title, content, date, comments, userName, heartNum}) => {
+const CardItem = ({id, image, title, content, createdDate, comments, userName, heartNum}) => {
+    const navigate = useNavigate();
+
+    const goPost = () => {
+        navigate(`/${userName}/${id}`);
+    }
+
     return(
-        <div className="CardItem">
+        <div className="CardItem" onClick={(goPost)}>
             <div className="image_section">
                 <img alt={title} src={image}/>
             </div>
@@ -10,7 +17,7 @@ const CardItem = ({image, title, content, date, comments, userName, heartNum}) =
                 <h4 className="post_title">{title}</h4>
                 <p className="post_content">{content}</p>
                 <div className="post_info"> 
-                    <span className="post_date">{date}일 전</span>
+                    <span className="post_date">{createdDate.split('-')[0]}년 {createdDate.split('-')[1]}월 {createdDate.split('-')[2][0]}{createdDate.split('-')[2][1]}일</span>
                     <span>·</span>
                     <span className="post_comments">{comments}개의 댓글</span>
                 </div>
