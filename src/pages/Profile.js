@@ -1,11 +1,26 @@
 import "../styles/Profile.css";
 import Header from "../components/Header";
 
+import { useEffect, useState } from "react";
+// import axios from "axios";
+
+// const PROFILE_POST_LIST = `/profile`;
+
 const Profile = () => {
     const url = new URL(window.location.href);
     const username = decodeURIComponent(url.pathname.split('/')[1]);
+    const [data, setData] = useState();
+    //id, title, content, writer, createdDate, likeCount
     const name = "김서린";
     const intro = "안녕하세요";
+
+    useEffect(() => {
+        // axios.get(PROFILE_POST_LIST)
+        // .then((res) => {
+        //     console.log(res.data);
+        //     setData(res.data);
+        // })
+    }, []);
 
     return(
         <div className="Profile">

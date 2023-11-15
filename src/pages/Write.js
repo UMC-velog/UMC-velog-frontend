@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import axios from "axios";
 
+// const POST_CONTENTS = `/board/write-form`;
+
 const Write = () => {
     const navigate = useNavigate();
     const [title, setTitle] = useState("");
@@ -22,7 +24,7 @@ const Write = () => {
             alert(`제목이 비어있습니다.`);
         } else{
             // try{
-            //     await axios.post('server_url', {title, contents});
+            //     await axios.post(POST_CONTENTS, {title, contents});
             //     navigate(`/${username}`/${title}); 
             // }catch(error){
             //     alert(error);

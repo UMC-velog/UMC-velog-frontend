@@ -3,52 +3,73 @@ import Header from "../components/Header";
 import CommentItem from "../components/CommentItem";
 
 import { useEffect, useState } from "react";
-// import axios from "axios";
+import axios from "axios";
+
+const POST_INFO = `/board`;
+const HANDLE_COMMENTS = `/board/comments`;
 
 const Post = () => {
     const url = new URL(window.location.href);
     const username = decodeURIComponent(url.pathname.split('/')[1]);
-    const postTitle = decodeURIComponent(url.pathname.split('/')[2]);
+    const id = url.pathname.split('/')[2];
     
+    //id, title, content, writer, createdDate, likeCount
     const [data, setData] = useState({
-        //velog title: (기본값: 아이디.log)
-        //postTitle
-        //username
+        title: "샘플 제목",
+        contents: "이것은 샘플 내용입니다",
+        writer: "",
         date: 1,
         heartNum: 0,
-        contents: ["경험이 별로 없는 주니어가 베스트 프랙티스, 안티패턴에 집착하는 것은 안좋을 수도 있다는 생각이 들었다. 베스트 프랙티스가 왜 베스트인지, 안티패턴이 왜 안티인지에 대한 이해가 부족할 수 있기 때문이다.", "나는 주석에 대해 그런 실수를 한 적이 있다. 주석은 무조건 나쁘다고 생각했고, 프로덕션 코드에 주석을 절대 남기면 안된다고 믿었다. 그런데 내가 예전에 쓴 코드를 보면서 '하, 주석이라도 쓰지...'라는 후회를 몇번 하게 되었다.", "클린코드의 주석 파트를 읽어보니 남발하면 안된다는 것이지, 주석을 무조건 쓰지 말라는 내용이 아니었다. 코드의 의도는 주석이 아닌 코드로 표현해야 한다. 그런데 코드로 표현하지 못하는 실력이라면 주석이라도 남겨야 한다. 주석이 왜 지양되어야 하는지에 대한 이해없이 무조건 주석이 나쁘다고만 믿으면 주석이 없어 좋은 코드가 아닌 주석'조차' 없는 난해한 코드를 남길 수도 있는 것이다.", "현재 공식처럼 퍼져있는 베스트 프랙티스들은 기성 개발자들이 몇년, 몇십년의 실수 끝에 깨우친 것들일 것이다. 그런데 그 실수들을 한 이유도 있을 거라 생각한다. 그 실수들이 왜 벌어졌는지 이해하는 것도 중요하다는 생각이 든다. 그런 이해없이 무조건 최선의 구현을 하려고만 한다면 코드가 불필요하게 복잡해지기 쉽다.", "개발자가 더 중요하게 생각해야 할 것은 무엇이 공식에 부합하는지가 아니라 무엇이 현재의 문제를 해결하기에 적합한지가 아닐까? 비록 안티패턴으로 여겨지더라도 그 방법이 현재의 문제를 해결하기에 가장 쉽고 빠른 방법이라면 그 방법을 채택해야하지 않을까? 그리고 그렇게 작성한 코드가 감당하기 어려운 부채가 되기 전에, 리팩토링을 통해 개선할 수 있는 것이 개발자에게 진짜 필요한 역량이 아닐까? 하는 생각이 든다."],
         name: "이름",
         intro: "한 줄 소개",
-        comments: [
-            {
-                username: "user1",
-                date: 1,
-                content: "멋져요"
-            },
-            {
-                username: "user2",
-                date: 2,
-                content: "좋아요"
-            },
-            {
-                username: "user3",
-                date: 3,
-                content: "최고예요"
-            },
-        ]
     })
-    const {date, heartNum, contents, name, intro, comments} = data;
+
+    const [input, setInput] = useState();
+    //id, content, createdAt, bo
+    const [comments, setComments] = useState([
+        {
+            username: "user1",
+            date: 1,
+            content: "멋져요"
+        },
+        {
+            username: "user2",
+            date: 2,
+            content: "좋아요"
+        },
+        {
+            username: "user3",
+            date: 3,
+            content: "최고예요"
+        },
+    ])
+    const {title, date, heartNum, contents, name, intro} = data;
 
     useEffect(() => {
         // try{
-        //     axios.get('server-url')
+        //     axios.get(GET_POST)
         //     .then((res)=>{
+        //         console.log(res.data);
         //         setData(res.data);
+        //     })
+        //     axios.get(GET_COMMENTS)
+        //     .then((res)=>{
+        //         console.log(res.data);
+        //         setComments(res.data);
         //     })
         // } catch(error){
         //     alert(error.response.data.message);
         // }
     }, []);
+
+    const handleInput = (e) => {
+        setInput(e.target.value);
+    }
+    const commentSubmitHandler = async() =>{
+        // console.log(input);
+        // await axios.post(HANDLE_COMMENTS, {input});
+        setInput("");
+    }
 
     return(
         <div className="Post">
@@ -57,7 +78,7 @@ const Post = () => {
             </div>
             <div className="head_container">
                 <div className="head_wrapper">
-                    <h1>{postTitle}</h1>
+                    <h1>{title}</h1>
                     <div className="post_info">
                         <div className="left_col">
                             <span className="username">{username}</span>
@@ -76,9 +97,10 @@ const Post = () => {
             </div>
             <div className="contents_container">
                 <div className="contents_wrapper">
-                    {contents.map((line, index) => (
+                    {/* {contents.map((line, index) => (
                         <p key={index}>{line}</p>
-                    ))}
+                    ))} */}
+                    {contents}
                 </div>
             </div>
             <div className="profileCard_container">
@@ -125,9 +147,9 @@ const Post = () => {
             <div className="comments_container">
                 <h4>{comments.length}개의 댓글</h4>
                 <div className="create_comment">
-                    <textarea placeholder="댓글을 작성하세요"/>
+                    <textarea placeholder="댓글을 작성하세요" value={input} onChange={handleInput}/>
                     <div className="button_wrapper">
-                        <button>댓글 작성</button>
+                        <button onClick={commentSubmitHandler}>댓글 작성</button>
                     </div>
                 </div>
                 <div className="view_comments">
