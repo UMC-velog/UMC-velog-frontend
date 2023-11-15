@@ -1,12 +1,13 @@
 .Search{
     width: 100%;
+    text-align: start;
 }
 .Search .header{
     width: 1728px;
     margin-left:auto;
     margin-right: auto; 
 }
-.Search .searchBar_wrapper{
+.Search .wrapper{
     width: 768px;
     margin-top: 3.5rem;
     margin-left: auto;
@@ -42,7 +43,15 @@
     color: #212529;
     transition: all 0.125s ease-in 0s;
 }
-
+.Search .post_length{
+    margin-bottom: 4rem;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    color: #495057;
+}
+.Search .post_length b{
+    color: #212529;
+}
 @media screen and (max-width: 1919px) {
     .Search .header{
         width: 1376px;
@@ -59,14 +68,14 @@
     }
 }
 @media (max-width: 1024px) {
-    .Search .searchBar_wrapper{
+    .Search .wrapper{
         padding-left: 1rem;
         padding-right: 1rem;
         width: calc(100% - 2rem);
     }
 }
 @media (max-width: 768px) {
-    .Search .searchBar_wrapper{
+    .Search .wrapper{
         margin-top: 0.5rem;
         width: calc(100% - 2rem);
     }
@@ -85,5 +94,9 @@
         font-size: 1.125rem;
         line-height: 1.5;
         height: auto;
+    }
+    .Search .post_length{
+        font-size: 1rem;
+        margin-bottom: 1rem;
     }
 }
