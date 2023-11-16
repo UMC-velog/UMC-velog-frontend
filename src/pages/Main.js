@@ -9,72 +9,70 @@ import axios from "axios";
 const mockData = [
     { 
         id: 1,
-        image: 'https://velog.velcdn.com/images/superlipbalm/post/66653c71-50d8-47e9-b917-1838c64cd2a7/image.jpeg',
+        postImg: 'https://velog.velcdn.com/images/superlipbalm/post/66653c71-50d8-47e9-b917-1838c64cd2a7/image.jpeg',
         title: '(번역) 자바스크립트에서 base64 문자열 인코딩의 미묘한 차이',
         content: '자바스크립트 문자열에 base64 인코딩 및 디코딩을 적용하면 어떤 일이 발생할까요? 이 글에서는 미묘한 차이와 피해야 할 일반적인 함정을 살펴봅니다.',
         createdDate: "2023-01-05T08:30:00.000+00:00",
         comments: 1,
-        userName: 'user1',
-        heartNum: '1',
+        writer: 'user1',
+        likeCount: '1',
     },
     {
         id: 2,
-        image: 'https://velog.velcdn.com/images/skynet/post/30e58f78-cf11-4223-9e46-87bf57a26899/image.png',
+        postImg: 'https://velog.velcdn.com/images/skynet/post/30e58f78-cf11-4223-9e46-87bf57a26899/image.png',
         title: 'AWS EC2 인스턴스 비용 최적화 기법',
         content: '이번 포스팅에서는 EC2 비용을 절감하는 방법에 대해 알아봅니다. EC2는 AWS에서 가장 많이 사용되는 리소스 중 하나이므로 클라우드 비용 절감에 큰 도움이 될 것입니다.',
         createdDate: "2023-01-04T08:30:00.000+00:00",
         comments: 2,
-        userName: 'user2',
-        heartNum: '2',
+        writer: 'user2',
+        likeCount: '2',
     },
     {
         id: 3,
-        image: 'https://velog.velcdn.com/images/teo/post/21347923-231a-4e30-9710-f3cfc5c9eb3a/image.png',
+        postImg: 'https://velog.velcdn.com/images/teo/post/21347923-231a-4e30-9710-f3cfc5c9eb3a/image.png',
         title: '2023 두번째 TEOConf 후기',
         content: '프롤로그 > 길다면 길었던 3개월간의 준비기간. 그리고 즐거운 행사와 뒷풀이! 모두 함께해줘서 고맙습니다.',
         createdDate: "2023-01-03T08:30:00.000+00:00",
         comments: 3,
-        userName: 'user3',
-        heartNum: '3',
+        writer: 'user3',
+        likeCount: '3',
     },
     {
         id: 4,
-        image: 'https://velog.velcdn.com/images/greencloud/post/b5f233e1-628a-4771-bfdf-dbcdf64440a8/image.gif',
+        postImg: 'https://velog.velcdn.com/images/greencloud/post/b5f233e1-628a-4771-bfdf-dbcdf64440a8/image.gif',
         title: 'JS로 자전과 공전을 구현할 수 있다고?',
         content: "블로그를 쓰고 있는 나를 보고 친구가 말했다. '태양을 회전시켜줘' 한문장만 치면 되는 줄 알았는데",
         createdDate: "2023-01-02T08:30:00.000+00:00",
         comments: 4,
-        userName: 'user4',
-        heartNum: '4',
+        writer: 'user4',
+        likeCount: '4',
     },
     {
         id: 5,
-        image: 'https://velog.velcdn.com/images/oneoneone/post/9fb7c4b1-9c64-4dfe-a39c-eb5eed857171/image.png',
+        postImg: 'https://velog.velcdn.com/images/oneoneone/post/9fb7c4b1-9c64-4dfe-a39c-eb5eed857171/image.png',
         title: '[TOP 10] 개발자들이 많이 읽은 아티클 모음 - 11월 1주차',
         content: '동료들은 다 아는 정보, 나만 모르지 않게 만들어주는 일일일에서 한 주간 개발자들이 많이 읽은 상위 10개의 아티클들을 소개합니다.',
         createdDate: "2023-01-01T08:30:00.000+00:00",
         comments: 5,
-        userName: 'user5',
-        heartNum: '5',
+        writer: 'user5',
+        likeCount: '5',
     },
 ]
 
-const GET_POST_LIST = `/board`;
+const GET_POST_LIST = `http://43.200.183.201:8080/board`;
 
 const Main = () => {
     const [data, setData] = useState(mockData);
     const [dataLatest, setDataLatest] = useState();
-    //id, writer, title, content, createdDate, likeCount
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSelectorOpen, setIsSelectorOpen] = useState(false);
     const [isTrending, setIsTrending] = useState(true);
     
     useEffect(() => {
-        // axios.get(GET_POST_LIST)
-        // .then((res)=>{
-        //     console.log(res.data);
-        //     setData(res.data);
-        // })
+        axios.get(GET_POST_LIST)
+        .then((res)=>{
+            setData(res.data);
+        });
         
         document.addEventListener('click', handleClickOutside);
         return () => {

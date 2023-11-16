@@ -1,11 +1,11 @@
 import "../styles/Search.css";
 import Header from "../components/Header";
-import SearchedItem from "../components/SearchedItem";
+import PostItem from "../components/PostItem";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
-// /http://localhost:8080/api/endpoint
-const SEARCH_URL = `/boards/search?keyword`;
+
+const SEARCH_URL = `http://43.200.183.201:8080/boards/search?keyword`;
 
 const Search = () => {
     const [isFocused, setIsFocused] = useState(false);
@@ -90,9 +90,10 @@ const Search = () => {
                 </p>
                 { data && <div className="post_wrapper">
                             {data.map((it) => (
-                                <SearchedItem
+                                <PostItem
                                     key={it.id}
                                     {...it}
+                                    isSearch={true}
                                 />
                             ))}
                         </div>}

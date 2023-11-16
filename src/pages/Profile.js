@@ -1,15 +1,48 @@
 import "../styles/Profile.css";
 import Header from "../components/Header";
+import PostItem from "../components/PostItem";
 
 import { useEffect, useState } from "react";
-// import axios from "axios";
+import axios from "axios";
 
-// const PROFILE_POST_LIST = `/profile`;
+const PROFILE_POST_LIST = `http://43.200.183.201:8080/profile`;
 
 const Profile = () => {
     const url = new URL(window.location.href);
     const username = decodeURIComponent(url.pathname.split('/')[1]);
-    const [data, setData] = useState();
+    const [data, setData] = useState([{
+        id: 1,
+        comments: [],
+        title: "sample title 1",
+        content: "this is sample content 1",
+        createdDate: "2023-01-02T08:30:00.000+00:00",
+        commentsCount: 1,
+        likeCount: 1,
+        image: 'https://velog.velcdn.com/images/skynet/post/30e58f78-cf11-4223-9e46-87bf57a26899/image.png',
+        writer: "user1"
+    },
+    {
+        id: 2,
+        comments: [],
+        title: "sample title 2",
+        content: "this is sample content 2",
+        createdDate: "2023-01-02T08:30:00.000+00:00",
+        commentsCount: 2,
+        likeCount: 2,
+        image: "",
+        writer: "user2"
+    },
+    {
+        id: 3,
+        comments: [],
+        title: "sample title 3",
+        content: "this is sample content 3",
+        createdDate: "2023-01-02T08:30:00.000+00:00",
+        commentsCount: 3,
+        likeCount: 3,
+        image: 'https://velog.velcdn.com/images/teo/post/21347923-231a-4e30-9710-f3cfc5c9eb3a/image.png',
+        writer: "user3"
+    }]);
     //id, title, content, writer, createdDate, likeCount
     const name = "김서린";
     const intro = "안녕하세요";
@@ -51,12 +84,18 @@ const Profile = () => {
                 </div>
                 <div className="search_wrapper">
                     <div className="search">
-                        <svg width="17" height="17" viewBox="0 0 17 17"><path fill-rule="evenodd" d="M13.66 7.36a6.3 6.3 0 1 1-12.598 0 6.3 6.3 0 0 1 12.598 0zm-1.73 5.772a7.36 7.36 0 1 1 1.201-1.201l3.636 3.635c.31.31.31.815 0 1.126l-.075.075a.796.796 0 0 1-1.126 0l-3.636-3.635z" clipRule="evenodd" fill="currentColor"></path></svg>
+                        <svg width="17" height="17" viewBox="0 0 17 17"><path fillRule="evenodd" d="M13.66 7.36a6.3 6.3 0 1 1-12.598 0 6.3 6.3 0 0 1 12.598 0zm-1.73 5.772a7.36 7.36 0 1 1 1.201-1.201l3.636 3.635c.31.31.31.815 0 1.126l-.075.075a.796.796 0 0 1-1.126 0l-3.636-3.635z" clipRule="evenodd" fill="currentColor"></path></svg>
                         <input placeholder="검색어를 입력하세요"/>
                     </div>
                 </div>
                 {/*tags*/}
-                <div className="posts">
+                <div className="post_wrapper">
+                    {data.map((it) => (
+                        <PostItem
+                            key={it.id}
+                            {...it}
+                        />
+                    ))}
                 </div>
             </div>
         </div>

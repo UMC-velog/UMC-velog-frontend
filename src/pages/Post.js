@@ -5,61 +5,61 @@ import CommentItem from "../components/CommentItem";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const POST_INFO = `/board`;
-const HANDLE_COMMENTS = `/board/comments`;
+const POST_INFO = `http://43.200.183.201:8080/board`;
+const GET_COMMENTS = `http://43.200.183.201:8080/board/comments`;
 
 const Post = () => {
     const url = new URL(window.location.href);
-    const username = decodeURIComponent(url.pathname.split('/')[1]);
+    const userName = decodeURIComponent(url.pathname.split('/')[1]);
     const id = url.pathname.split('/')[2];
     
-    //id, title, content, writer, createdDate, likeCount
     const [data, setData] = useState({
-        title: "샘플 제목",
-        contents: "이것은 샘플 내용입니다",
-        writer: "",
-        date: 1,
-        heartNum: 0,
-        name: "이름",
-        intro: "한 줄 소개",
+        id: id,
+        title: "title",
+        contents: "content",
+        createdDate: "0000-00-00",
+        likeCount: 0,
+        userName: userName,
+        // intro: "한 줄 소개",
+        postImg: "",
     })
 
     const [input, setInput] = useState();
     //id, content, createdAt, bo
     const [comments, setComments] = useState([
         {
-            username: "user1",
-            date: 1,
+            userName: "user1",
+            createdDate: 1,
             content: "멋져요"
         },
         {
-            username: "user2",
-            date: 2,
+            userName: "user2",
+            createdDate: 2,
             content: "좋아요"
         },
         {
-            username: "user3",
-            date: 3,
+            userName: "user3",
+            createdDate: 3,
             content: "최고예요"
         },
     ])
-    const {title, date, heartNum, contents, name, intro} = data;
+    const {title, createdDate, likeCount, contents, name, postImg} = data;
 
     useEffect(() => {
-        // try{
-        //     axios.get(GET_POST)
-        //     .then((res)=>{
-        //         console.log(res.data);
-        //         setData(res.data);
-        //     })
-        //     axios.get(GET_COMMENTS)
-        //     .then((res)=>{
-        //         console.log(res.data);
-        //         setComments(res.data);
-        //     })
-        // } catch(error){
-        //     alert(error.response.data.message);
-        // }
+        try{
+            // axios.get([POST_INFO, id].join("/"))
+            // .then((res)=>{
+            //     console.log(res.data);
+            //     setData(res.data);
+            // })
+            // axios.get([GET_COMMENTS, id].join("/"))
+            // .then((res)=>{
+            //     console.log(res.data);
+            //     setComments(res.data);
+            // })
+        } catch(error){
+            alert(error.response.data.message);
+        }
     }, []);
 
     const handleInput = (e) => {
@@ -74,21 +74,21 @@ const Post = () => {
     return(
         <div className="Post">
             <div className="header">
-                <Header isPost={true} username={username}/>
+                <Header isPost={true} userName={userName}/>
             </div>
             <div className="head_container">
                 <div className="head_wrapper">
                     <h1>{title}</h1>
                     <div className="post_info">
                         <div className="left_col">
-                            <span className="username">{username}</span>
+                            <span className="username">{userName}</span>
                             <span className="separator">·</span>
-                            <span>{date}일 전</span>
+                            <span>{createdDate.split('-')[0]}년 {createdDate.split('-')[1]}월 {createdDate.split('-')[2][0]}{createdDate.split('-')[2][1]}일</span>
                         </div>
                         <div className="right_col">
                             <button>
                                 <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18 1l-6 4-6-4-6 5v7l12 10 12-10v-7z"></path></svg>
-                                <span>{heartNum}</span>
+                                <span>{likeCount}</span>
                             </button>
                         </div>
                     </div>
@@ -109,7 +109,7 @@ const Post = () => {
                         <div className="image_section"><img alt="profile image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAASbSURBVHgB7Z0tTytBFIYP914BDiQ4cIADB0EhwYFE8ifq7g/hJ2CRSCQ4kOCobF3ruHk3maS5aSnbdnfPOe/7JE0oCTvTnmc+dvbMsNbr9b5M0PLLBDUSgBwJQI4EIEcCkCMByJEA5EgAciQAORKAHAlAjgQgRwKQIwHIkQDkSAByJAA5EoAcCUCOBCBHApAjAciRAORIAHIkADkSgBwJQI4EIEcCkCMByJEA5EgAciQAOX+MhPX1dTs+Prbt7W3b3d21jY2N6ndgPB7bYDCw4XBor6+v9vHxUb1nIL0Ae3t7dn5+XgV9FhABYuC1v79f/Q4SPD8/28vLi2UmrQA/Cfx34O/wwjXu7u7S9gi/z87O/loyELTr62vb2tqyZcFQcXp6Wv2MXiEb6SaBCDwEWDVFqmykEgABOjo6sqbAtbNJkEaAi4uLRoNfQBmXl5eWhRQCIChlnG6Dk5OTVstrkvACYKLXxJg/D5RZ1hEiE14ABGIVs/26IPgZeoHQAiDwbYz7s4AA0XuB0AIsusizKsrycmRCC+Dhyz84OLDIhBUAra/rHgCgDpGHgbAC7OzsmBc81aUuYQXY3Nw0L3iqS13CCtDFrd8sPNWlLsoIIkcCkBNWAE8JGpGTRcIKgPw9L3iqS13CCvD5+Wle8FSXuoQVAJm8HlK0UAfUJSqhJ4Fvb2/WNcgcjkxoAfDld936oieKhhYAwX96erKuwJ6B6Oni4dcBIEAXvQAC//j4aNEJLwCC30UgUGaGzSIpVgLRC7Q5FKCsLFvG0iwFPzw8tBIUlIGyspDqWcD9/X2jEuDaKCMT6R4GIUBNzAlwzWzBByl3ByNYaK23t7dLP6vHfT6u9/7+bhlZ6/V6X5YYpI0jebRu/mD2wBfSHxCBngAv9ASQ4PDwsErhwvvJE0JGo1EV9H6/72KFsS1SCDAZyFngnh2vVUwSUV4WQUILULZnlR06aMGYqDW1QDN56khZho6+Ghh2DoBgXF1dTZ3koZWvcqWubECdtg0NZUQ+QiakAGjxOA9gHhABj4wXeWyMHgX5/j85Zwi9AXoeD4+n6xJOAASk7nbwkjyCGT0meXg/mcWDYOMsIJwShtaO3mWRHT/odaINCaHmAIsEHyCQOP6tHAHXFKVukSQIsxK4aPDbBnWMdG5ACAHwhUYIfgHzEwwjEXAvQFdHwCzLzc1NiC1jrgXA2I31/Ijbr1HnCEfKuRagq/N/VgXuJLzPB9wKgMBnOITJu8RuBUDXnwHvQ4FLAbDkGrnr/x8MBV7vClwKEHHWPw+vn8mdANlaf8FrL+BOgIytv+Dxs7kSAC0kY+sveOwFXAnQ5bGvbdH0A6m6uBLAw8GPTePtaFk3AmTv/gtYF/A0DLgRgKH1Fzx9VjcCIBuHBU89nRsBkKrFgqfNJm5SwpBGVc7fz/CvWKZRUsk9bS1PvzVMfI+OiiVHApAjAciRAORIAHIkADkSgBwJQI4EIEcCkCMByJEA5EgAciQAORKAHAlAjgQgRwKQIwHIkQDkSAByJAA5EoAcCUCOBCBHApAjAciRAORIAHIkADkSgBwJQI4EIOcfGjV2tEfztqEAAAAASUVORK5CYII="/></div>
                         <div className="info_section">
                             <div className="name">{name}</div>
-                            <div className="intro">{intro}</div>
+                            {/* <div className="intro">{intro}</div> */}
                         </div>
                     </div>                    
                     <div className="line"></div>
@@ -162,7 +162,7 @@ const Post = () => {
                     ))} */}
                     {comments.map((it) => (
                         <CommentItem
-                            key={it.username}
+                            key={it.userName}
                             {...it}
                         />
                     ))}

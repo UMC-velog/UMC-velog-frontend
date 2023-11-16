@@ -1,13 +1,16 @@
 import "../styles/Write.css";
 
+import { getCookie } from "../cookie";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 
-// const POST_CONTENTS = `/board/write-form`;
+const POST_CONTENTS = `http://43.200.183.201:8080/board/write-form`;
 
 const Write = () => {
+    const accessToken = getCookie("accessToken");
     const navigate = useNavigate();
+
     const [title, setTitle] = useState("");
     const [contents, setContents] = useState("");
 
@@ -24,8 +27,15 @@ const Write = () => {
             alert(`제목이 비어있습니다.`);
         } else{
             // try{
-            //     await axios.post(POST_CONTENTS, {title, contents});
-            //     navigate(`/${username}`/${title}); 
+            //     const postImg = "";
+            //     await axios.post(POST_CONTENTS, {title, contents, postImg}, {headers: {Authorization: accessToken}});
+            //     //.then((res)=>{
+            //     //     console.log(res.data);
+            //         // const id = res.data;
+            //     // })
+            //     const username = "user123";
+            //     const id = 1;
+            //     navigate(`/${username}/${id}`); 
             // }catch(error){
             //     alert(error);
             // }
