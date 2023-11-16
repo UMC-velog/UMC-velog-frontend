@@ -2,6 +2,7 @@
     width: 768px;
     margin-left: auto;
     margin-right: auto;
+    text-align: start;
 }
 /*profile card*/
 .Profile .container .profile_wrapper{
@@ -25,7 +26,6 @@
     flex-direction: column;
     justify-content: center;
     margin-left: 1rem;
-    text-align: left;
 }
 .Profile .info_section .name{
     cursor: pointer;
@@ -131,7 +131,7 @@
     color: #495057;
     min-width: 0px;
 }
-
+/*post list*/
 
 @media screen and (max-width: 1024px){
     .Profile .container .profile_wrapper{
@@ -162,7 +162,6 @@
         margin-top: 1rem;
         display: flex;
         flex-direction: column;
-        text-align: left;
     }
     .Profile .info_section .name{
         font-size: 1.125rem;
@@ -195,6 +194,10 @@
         width: 33.3333%;
     }
     .Profile .container .posts{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .Profile .post_wrapper{
         padding-left: 1rem;
         padding-right: 1rem;
     }

@@ -55,7 +55,7 @@
 .Main .btn_selector{
     position: relative;
     cursor: pointer;
-    width: 66px;
+    width: 5rem;
     background: white;
     height: 2rem;
     border-radius: 4px;
@@ -65,7 +65,7 @@
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     font-weight: bold;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     color: black;
     user-select: none;
 }
@@ -205,6 +205,12 @@
 @media screen and (max-width: 1056px) {
     .Main .container{
         width: calc(100% - 32px);
+    }
+}
+@media screen and (max-width: 1024px) {
+    .Main .btn_selector{
+        width: 4.25rem;
+        font-size: .75rem;
     }
 }
 @media screen and (max-width: 944px) {
