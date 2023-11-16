@@ -1,31 +1,34 @@
 import "../styles/SignUp.css";
-import axios from "axios";
+
+import { setCookie } from "../cookie";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+const SIGN_UP = `http://43.200.183.201:8080/sign-up`;
 
 const SignUp = () => {
-    const code = new URL(window.location.href).searchParams.get("code");
+    const url = new URL(window.location.href);
+    const email = url.pathname.split('/')[2];
     const navigate = useNavigate();
 
     const [userInfo, setUserInfo] = useState({
-        name: "",
-        email: "email@gmail.com",
+        userName: "",
+        email: email,
         userId: "",
-        userIntro: "",
+        password: "",
+        checkPassword: "",
         isChecked: false,
     })
     
     const [isCheckedTerms, setIsCheckedTerms] = useState(null);
     const [isValidName, setIsValidName] = useState(null);
     const [isValidUserId, setIsValidUserId] = useState(null);
-    const [isDuplicated, setIsDuplicated] = useState(null);
+    const [isValidPassword, setIsValidPassword] = useState(null);
+    const [isCheckedPassword, setIsCheckedPassword] = useState(null);
+    // const [isDuplicated, setIsDuplicated] = useState(true);
     
     useEffect(() => {
-        async function signUpEmail() {
-            //
-        };
-        signUpEmail();
-
         if(userInfo.isChecked){
             setIsCheckedTerms(true);
         }
@@ -46,35 +49,40 @@ const SignUp = () => {
     }
     const goBack = () => {
         navigate(`/`);
-    }
+    } 
 
     const onSubmit = async() => {
         setIsCheckedTerms(userInfo.isChecked);
         //이용약관 동의 여부
         if(userInfo.isChecked){ 
-            setIsValidName(userInfo.name.length > 0);
+            setIsValidName(userInfo.userName.length > 0);
             //이름 입력 여부
             if(isValidName){
                 setIsValidUserId((userInfo.userId.length > 2 && userInfo.userId.length < 17));
                 //아이디 3~16자 확인
                 if(isValidUserId){
-                    //아이디 중복 확인
-                    // try{
-                    //     const userId = userInfo.userId;
-                    //     await axios.post('server-url', {userId})
-                    //     .then((res) => {
-                    //         setIsDuplicated(res.data);
-                    //     })
-                    // } catch(error){
-                    //     alert(error.response.data.message);
-                    // }
+                    setIsValidPassword(userInfo.password.length > 7);
+                    //비밀번호 8자 이상
+                        if(isValidPassword){
+                            setIsCheckedPassword(userInfo.password === userInfo.checkPassword);                       
+                        }
                 }
             }
         }
-        const getIsActive = userInfo.isChecked && isValidName && isValidUserId && isDuplicated;
+        const getIsActive = userInfo.isChecked && isValidName && isValidUserId && isValidPassword && isCheckedPassword; 
+        console.log(getIsActive);
         if(getIsActive){
             try{
-                await axios.post('url', userInfo, {header: code});
+                const {userName, userId, password} = userInfo;
+                const role = null;
+                console.log({userId, userName, password, email, role});
+                await axios.post(SIGN_UP, {userId, userName, password, email, role})
+                .then((res)=>{
+                    const accessToken = res.headers[`authorization`];
+                    const refreshToken = res.headers[`authorization-refresh`];
+                    setCookie("accessToken", accessToken);
+                    setCookie("refreshToken", refreshToken); 
+                })
                 navigate(`/`);
             } catch(error){
                 alert(error.response.data.message);
@@ -93,7 +101,7 @@ const SignUp = () => {
                     <label>이름</label>
                     <div className="group">
                         <div className="input_wrapper">
-                            <input placeholder="이름을 입력하세요" name="name" onChange={handleInput} size="17"/>
+                            <input placeholder="이름을 입력하세요" name="userName" onChange={handleInput} size="17"/>
                         </div>
                         <div className="width-maker">이름을 입력하세요</div>
                     </div>
@@ -112,18 +120,22 @@ const SignUp = () => {
                     <label>아이디</label>
                     <div className="group">
                         <div className="input_wrapper">
-                            <input placeholder="아이디를 입력하세요" name="userId" onChange={handleInput} size="13"/>
+                            <input placeholder="아이디를 입력하세요" name="userId" onChange={handleInput} size="17"/>
                         </div>
                         <div className="width-maker">아이디를 입력하세요</div>
                     </div>
                 </div>
                 <div className="input_box">
-                    <label>한 줄 소개</label>
-                    <div className="group">
+                    <label>비밀번호</label>
+                    <div className="group password">
                         <div className="input_wrapper">
-                            <input placeholder="당신을 한 줄로 소개해보세요" name="intro" onChange={handleInput} size="27"/>
+                            <input placeholder="비밀번호를 입력하세요" name="password" type="password" onChange={handleInput} size="22"/>
                         </div>
-                        <div className="width-maker">당신을 한 줄로 소개해보세요</div>
+                        <div className="width-maker">비밀번호를 입력하세요</div>
+                        <div className="input_wrapper">
+                            <input placeholder="비밀번호를 확인하세요" name="checkPassword" type="password" onChange={handleInput} size="22"/>
+                        </div>
+                        <div className="width-maker">비밀번호를 확인하세요</div>
                     </div>
                 </div>
                 <div className="termsandconditions">
@@ -139,6 +151,8 @@ const SignUp = () => {
                         {isCheckedTerms!==null && !isCheckedTerms && <h4 className="text_error">이용약관과 개인정보취급방침에 동의해주세요.</h4>}
                         {isValidName !==null && !isValidName && <h4 className="text_error">이름을 입력해주세요.</h4>}
                         {isValidUserId !== null && !isValidUserId && <h4 className="text_error">아이디는 3~16자의 알파벳,숫자,혹은 - _ 으로 이루어져야 합니다.</h4>}
+                        {isValidPassword !==null && !isValidPassword && <h4 className="text_error">비밀번호는 8자 이상으로 이루어져야 합니다.</h4>}
+                        {isCheckedPassword !==null && !isCheckedPassword && <h4 className="text_error">비밀번호가 일치하지 않습니다</h4>}
                         {/* <h4 className="text_red">이미 존재하는 아이디입니다.</h4> */}
                     </div>
                     <div className="buttons">
