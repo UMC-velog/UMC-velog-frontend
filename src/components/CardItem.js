@@ -1,18 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/CardItem.css";
 
-const CardItem = ({id, image, title, content, createdDate, comments, userName, heartNum}) => {
+const CardItem = ({id, postImg, title, content, createdDate, comments, writer, likeCount}) => {
     const navigate = useNavigate();
-
     const goPost = () => {
-        navigate(`/${userName}/${id}`);
+        navigate(`/${writer}/${id}`);
     }
 
     return(
         <div className="CardItem" onClick={(goPost)}>
-            <div className="image_section">
-                <img alt={title} src={image}/>
-            </div>
+            {postImg && <div className="image_section">
+                <img alt={title} src={postImg}/>
+            </div>}
             <div className="content_section">
                 <h4 className="post_title">{title}</h4>
                 <p className="post_content">{content}</p>
@@ -24,15 +23,15 @@ const CardItem = ({id, image, title, content, createdDate, comments, userName, h
             </div>
             <div className="user_section">
                 <div className="left_col">
-                    <img alt={userName} src='https://velog.io/images/user-thumbnail.png'/>
+                    <img alt={writer} src='https://velog.io/images/user-thumbnail.png'/>
                     <span className="username">
                         by
-                        <b>{userName}</b>
+                        <b>{writer}</b>
                     </span>
                 </div>
                 <div className="right_col">
                     <svg viewBox="0 0 24 24"><path fill="currentColor" d="m18 1-6 4-6-4-6 5v7l12 10 12-10V6z"></path></svg>
-                    {heartNum}
+                    {likeCount}
                 </div>
             </div>
         </div>
