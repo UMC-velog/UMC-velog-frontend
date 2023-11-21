@@ -7,6 +7,7 @@
     /* margin-bottom: 4rem; */
     text-align: start;
     padding-bottom: 4rem;
+    /* position: relative; */
 }
 .Post .header{
     width: 100%;
@@ -20,6 +21,7 @@
     margin-right: auto;
 }
 .Post .head_wrapper h1{
+    font-family: 'Nanum Gothic';
     font-size: 3rem;
     line-height: 1.5;
     letter-spacing: -0.004em;
@@ -38,7 +40,8 @@
     -webkit-box-pack: justify;
     justify-content: space-between;
 }
-.Post .post_info .left_col .username{
+.Post .post_info .left_col .user_id{
+    cursor: pointer;
     color: #212529;
     font-weight: bold;
 }
@@ -72,10 +75,67 @@
     font-weight: bold;
     color: #868E96;
 }
+
+/*like and share*/
 .Post .head_margin{    
     margin-top: 0.875rem;
     margin-bottom: -0.875rem;
     min-height: 0.875rem;
+    position: relative;
+}
+.Post .like_container{
+    position: absolute;
+    left: -7rem;
+}
+.Post .like_wrapper{
+    width: 4rem;
+    background: #F8F9FA;
+    border: 1px solid #F1F3F5;
+    border-radius: 2rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Post .like_wrapper .like{
+    transform: scale(1);
+    height: 3rem;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    border: 1px solid #DEE2E6;
+    border-radius: 1.5rem;
+    color: #868E96;
+    cursor: pointer;
+    z-index: 5;
+}
+.Post .like_wrapper .like:hover{
+    color: #212529;
+    border-color: #212529;
+}
+.Post .like_wrapper .like.true{
+    color: #FFFFFF;
+    background: #20C997;
+    border-color: #20C997;
+}
+.Post .like_wrapper .like.true:hover{
+    background: rgb(56, 217, 169);
+    border-color: rgb(56, 217, 169);
+    color: #FFFFFF;
+}
+.Post .like_wrapper .like svg{
+    width: 24px;
+    height: 24px;
+}
+.Post .like_wrapper .likeCount{
+    margin-top: 0.5rem;
+    color: #495057;
+    line-height: 1;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
 }
 
 /*content*/
@@ -90,6 +150,15 @@
     line-height: 1.7;
     letter-spacing: -0.004em;
     overflow-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+}
+.Post .contents_wrapper img{
+    cursor: pointer;
+    width: 100%;
+    height: 30rem;
+    object-fit: contain;
+    margin-bottom: 3rem;
 }
 
 /*profile card*/
@@ -133,22 +202,11 @@
     color: #212529;
     text-decoration: underline;
 }
-.Post .profile .info_section .intro{
-    white-space: pre-wrap;
-    font-size: 1.125rem;
-    line-height: 1.5;
-    margin-top: 0.25rem;
-    color: #495057;
-    letter-spacing: -0.004em;
-}
 .Post .profileCard_wrapper .line{
     background: #E9ECEF;
     height: 1px;
     margin-top: 2rem;
     margin-bottom: 1.5rem;
-}
-.Post .profileCard_wrapper .social_icons{
-    display: flex;
 }
 .Post .social_icons svg{
     cursor: pointer;
@@ -165,13 +223,14 @@
     margin-right: auto;
     margin-top: 3rem;
     display: flex;
+    justify-content: space-between;
 }
 .Post .otherPosts_container .post_previous{
     flex: 1 1 0%;
     cursor: pointer;
     background: #F8F9FA;
     box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 4px 0px;
-    width: 100%;
+    /* width: 100%; */
     min-width: 0px;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -187,7 +246,7 @@
     cursor: pointer;
     background: #F8F9FA;
     box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 4px 0px;
-    width: 100%;
+    /* width: 100%; */
     padding-left: 1rem;
     padding-right: 1rem;
     height: 4rem;
@@ -195,6 +254,7 @@
     align-items: center;
     text-decoration: none;
     flex-direction: row-reverse;
+    max-width: 360px;
 }
 .Post .otherPosts_container .button_section{
     width: 32px;
@@ -223,6 +283,17 @@
 .Post .post_next .text_section{
     align-items: end;
     text-align: end;
+}
+.Post .otherPosts_container .false{
+    cursor: default;
+    background-color: transparent;
+    box-shadow: none;
+}
+.Post .otherPosts_container .false .button_section{
+    display: none;
+}
+.Post .otherPosts_container .false .text_section{
+    display: none;
 }
 .Post .otherPosts_container .description{
     font-size: 0.75rem;
@@ -306,6 +377,9 @@
     .Post .right_col{
         display: flex;
     }
+    .Post .head_margin{
+        display: none;
+    }
     .Post .contents_container{
         padding-left: 1rem;
         padding-right: 1rem;
@@ -331,11 +405,6 @@
     }
     .Post .head_wrapper .post_info .left_col{
         font-size: 0.875rem;
-    }
-    .Post .head_margin{ 
-        margin-top: 0.5rem;
-        margin-bottom: -0.5rem;
-        min-height: 0.5rem;
     }
     .Post .contents_container {
         width: calc(100% - 2rem);

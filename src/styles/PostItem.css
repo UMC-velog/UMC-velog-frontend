@@ -15,6 +15,7 @@
     margin-bottom: 1.5rem;
 }
 .PostItem .user_info img{
+    cursor: pointer;
     width: 3rem;
     height: 3rem;
     display: block;
@@ -25,6 +26,7 @@
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
 }
 .PostItem .user_info .username{
+    cursor: pointer;
     font-size: 0.875rem;
     color: #212529;
     font-weight: bold;
@@ -37,6 +39,7 @@
     position: relative;
 }
 .PostItem .image_section img{
+    cursor: pointer;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -45,13 +48,16 @@
     display: block;
     object-fit: cover;
 }
-.PostItem h2{
+.PostItem .contents {
+    cursor: pointer;
+}
+.PostItem .contents h2{
     font-size: 1.5rem;
     margin: 0px;
     color: #212529;
     word-break: keep-all;
 }
-.PostItem p{
+.PostItem .contents p{
     margin-bottom: 2rem;
     margin-top: 0.5rem;
     font-size: 1rem;

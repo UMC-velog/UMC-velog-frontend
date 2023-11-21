@@ -33,6 +33,7 @@
     fill: rgb(33, 37, 41);
 }
 .Search input{
+    width: 100%;
     font-size: 1.5rem;
     line-height: 2rem;
     height: 2rem;

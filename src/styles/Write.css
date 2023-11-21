@@ -53,8 +53,8 @@
     border: none;
     color: #212529;
     font-family: 'Noto Sans KR';
-    font-weight: 600;
-    font-size: 2.9rem;
+    font-weight: 700;
+    font-size: 2.5rem;
 }
 .Write .title textarea::placeholder {
     color: #868E96;
@@ -78,12 +78,14 @@
     resize: none;
     border: none;
     outline: none;
-    font-size: 1.1rem;
     line-height: 1.5;
     overflow: hidden;
     overflow-y: scroll; 
     box-sizing: border-box;
     min-height: calc(100vh - 8.9rem - 80px);
+    font-family: 'Noto Sans KR';
+    font-weight: 400;
+    font-size: 1.1rem;
 }
 .Write .contents textarea::placeholder{
     font-style: italic;
@@ -155,22 +157,25 @@
     flex: 1 1 0%;
     overflow-y: auto;
     color: #212529;
+    font-family: 'Noto Sans KR';
+    text-align: start;
 }
 .Write .right .preview h1{
     /*title*/    
-    font-size: 2.5em;
+    font-size: 2.25rem;
     margin-bottom: 4rem;
     font-weight: 800;
 }
 .Write .right .preview p{
     /*contents*/    
-    font-size: 1.125rem;
+    font-size: 1rem;
     color: #212529;
     transition: color 0.125s ease-in 0s;
     line-height: 1.7;
     letter-spacing: -0.004em;
     word-break: keep-all;
     overflow-wrap: break-word;
+    padding: 0;
 }
 @media screen and (max-width: 1024px) {
     .Write .right{
