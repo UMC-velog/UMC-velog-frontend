@@ -7,6 +7,8 @@
 .notosanskr * { 
  font-family: 'Noto Sans KR', sans-serif;
 }
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&family=Nanum+Gothic&display=swap');
 
 body {
   margin: 0;
