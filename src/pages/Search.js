@@ -10,39 +10,7 @@ const SEARCH_URL = `http://43.200.183.201:8080/boards/search?keyword`;
 const Search = () => {
     const [isFocused, setIsFocused] = useState(false);
     const [search, setSearch] = useState("");
-    const [data, setData] = useState([{
-        id: 1,
-        comments: [],
-        title: "sample title 1",
-        content: "this is sample content 1",
-        createdDate: "2023-01-02T08:30:00.000+00:00",
-        commentsCount: 1,
-        likeCount: 1,
-        image: 'https://velog.velcdn.com/images/skynet/post/30e58f78-cf11-4223-9e46-87bf57a26899/image.png',
-        writer: "user1"
-    },
-    {
-        id: 2,
-        comments: [],
-        title: "sample title 2",
-        content: "this is sample content 2",
-        createdDate: "2023-01-02T08:30:00.000+00:00",
-        commentsCount: 2,
-        likeCount: 2,
-        image: "",
-        writer: "user2"
-    },
-    {
-        id: 3,
-        comments: [],
-        title: "sample title 3",
-        content: "this is sample content 3",
-        createdDate: "2023-01-02T08:30:00.000+00:00",
-        commentsCount: 3,
-        likeCount: 3,
-        image: 'https://velog.velcdn.com/images/teo/post/21347923-231a-4e30-9710-f3cfc5c9eb3a/image.png',
-        writer: "user3"
-    }]);
+    const [data, setData] = useState();
 
     useEffect(() => {
         document.addEventListener('click', handleClickOutside);
@@ -68,11 +36,13 @@ const Search = () => {
         }
     }
     const onSubmit = async(search) => {
-        // await axios.get([SEARCH_URL, search].join("="))
-        // .then((res)=>{
-        //     console.log(res.data);
-        //     setData(res.data);
-        // })
+        await axios.get([SEARCH_URL, search].join("="))
+        .then((res)=>{         
+            setData(res.data.map((item) =>({
+                ...item,
+                id: item.boardId,
+            })))
+        })
     }
 
     return(
@@ -85,15 +55,16 @@ const Search = () => {
                     <svg width="17" height="17" viewBox="0 0 17 17"><path fillRule="evenodd" d="M13.66 7.36a6.3 6.3 0 1 1-12.598 0 6.3 6.3 0 0 1 12.598 0zm-1.73 5.772a7.36 7.36 0 1 1 1.201-1.201l3.636 3.635c.31.31.31.815 0 1.126l-.075.075a.796.796 0 0 1-1.126 0l-3.636-3.635z" clipRule="evenodd" fill="currentColor"></path></svg>
                     <input placeholder="검색어를 입력하세요" value={search} onChange={onChangeSearch} onKeyDown={onKeyDown}/>
                 </div>
-                <p className="post_length">
+                { data && <p className="post_length">
                     총 <b>{data.length}개</b>의 포스트를 찾았습니다.
-                </p>
+                </p>}
                 { data && <div className="post_wrapper">
                             {data.map((it) => (
                                 <PostItem
                                     key={it.id}
                                     {...it}
                                     isSearch={true}
+                                    userId={it.userName}
                                 />
                             ))}
                         </div>}

@@ -1,26 +1,22 @@
 import "../styles/Login.css";
-import { LoginStateContext } from "../App";
 
 import { useNavigate } from "react-router-dom";
 import { setCookie } from '../cookie';
-import { useContext, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 
-const LOG_IN = `http://43.200.183.201:8080/api/endpoint/login`;
+const LOG_IN = `http://43.200.183.201:8080/auth/login`;
 
 const Login = ({closeModal}) => {
-const LoginHandler = useContext(LoginStateContext);
-const navigate = useNavigate();
+    const navigate = useNavigate();  
 
     const [isLogin, setIsLogin] = useState(true);
-    // 이메일 전송
-    // const [isLoginSend, setIsLoginSend] = useState(false);
-    // const [isSignUpSend, setIsSignUpSend] = useState(false);
     const [inputs, setInputs] = useState({
-        email: "",
+        userId: "",
         password: "",
+        email: "",
     })
-    const {email, password} = inputs;
+    const {userId, password, email} = inputs;
     // 이메일 검사: '@', '.'이 둘 다 포함
     const isValidEmail = email.includes('@') && email.includes('.');
 
@@ -39,43 +35,23 @@ const navigate = useNavigate();
         });
     }
     const onSubmit = async() => {
-        if(isValidEmail){
-            if(isLogin){
-                try{
-                    await axios.post(LOG_IN, email)
-                        .then((res)=>{
-                            console.log(res);
-                            const accessToken = res.headers[`authorization`];
-                            const refreshToken = res.headers[`authorization-refresh`];
-                            setCookie("accessToken", accessToken);
-                            setCookie("refreshToken", refreshToken); 
-                        })
-                    LoginHandler(true);
-                }catch(error){
-                    alert(error.response.data.message);   
-                }
-            } else{
-                navigate(`/register/${email}`);
+        if(isLogin && userId.length>0 && password.length>0){
+            try{
+                await axios.post(LOG_IN, {userId, password})
+                    .then((res)=>{
+                        const accessToken = res.data.accessToken;
+                        const refreshToken = res.data.refreshToken;
+                        setCookie("accessToken", accessToken);
+                        setCookie("refreshToken", refreshToken); 
+                    })
+                closeModal();
+            }catch(error){
+                alert(error.response.data.message);   
             }
+        } else if(isValidEmail){
+            navigate(`/register/${email}`);
         }
-        // try{
-        //     //가입 여부 확인
-        //     await axios.get(LOG_IN)
-        //     .then((res)=>{
-        //         setIsLoginSend(res.data);
-        //     });
-            
-        //     //링크 전송
-        //     if(isLoginSend){
-        //         await axios.post(LOG_IN, email);
-        //     }
-        //     else{
-        //         setIsSignUpSend(true);
-        //         await axios.post(LOG_IN', email);
-        //     }
-        // } catch(error){
-        //     alert(error.response.data.message);            
-        // }
+        
     }
     return(
         <div className="Login">
@@ -99,7 +75,11 @@ const navigate = useNavigate();
                             </div>:  */}
                             <div className={["authEmailForm", isLogin].join(" ")}>
                                 <div className="inputs">
-                                        <input placeholder="이메일을 입력하세요." name="email" onChange={handleInput}/>
+                                        <input 
+                                            placeholder={isLogin? "아이디를 입력하세요.":"이메일을 입력하세요."} 
+                                            name={isLogin? "userId":"email"} 
+                                            onChange={handleInput}
+                                        />
                                         {isLogin && <input placeholder="비밀번호를 입력하세요." type="password" name="password"onChange={handleInput}/>}
                                         <div className="line"/>
                                     </div>

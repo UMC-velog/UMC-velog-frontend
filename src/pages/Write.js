@@ -5,40 +5,37 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const POST_CONTENTS = `http://43.200.183.201:8080/board/write-form`;
+const POST_CONTENTS = `http://43.200.183.201:8080/boards/write-form`;
 
 const Write = () => {
     const accessToken = getCookie("accessToken");
     const navigate = useNavigate();
 
     const [title, setTitle] = useState("");
-    const [contents, setContents] = useState("");
+    const [content, setContent] = useState("");
 
     const handleChangeInput = (e) => {
         const {name, value} = e.target;
         if(name === "title"){
             setTitle(value);
         }else{
-            setContents(value);
+            setContent(value);
         }
     }
     const onSubmit = async() => {
         if(title.length === 0){
             alert(`제목이 비어있습니다.`);
         } else{
-            // try{
-            //     const postImg = "";
-            //     await axios.post(POST_CONTENTS, {title, contents, postImg}, {headers: {Authorization: accessToken}});
-            //     //.then((res)=>{
-            //     //     console.log(res.data);
-            //         // const id = res.data;
-            //     // })
-            //     const username = "user123";
-            //     const id = 1;
-            //     navigate(`/${username}/${id}`); 
-            // }catch(error){
-            //     alert(error);
-            // }
+            try{
+                const postImg = "";
+                await axios.post(POST_CONTENTS, {title, content, postImg}, {headers: {Authorization: `Bearer ${accessToken}`}})
+                .then((res)=>{
+                    const id = res.data;
+                    navigate(`/${id}`); 
+                })
+            }catch(error){
+                alert(error);
+            }
         }
     }
 
@@ -53,7 +50,7 @@ const Write = () => {
                     {/* tags */}
                     {/* toolbar */}
                     <div className="contents">
-                        <textarea name="contents" value={contents} onChange={handleChangeInput} placeholder="당신의 이야기를 적어보세요..."></textarea>
+                        <textarea name="content" value={content} onChange={handleChangeInput} placeholder="당신의 이야기를 적어보세요..."></textarea>
                     </div>
                 </div>
                 <div className="buttons">
@@ -73,7 +70,7 @@ const Write = () => {
                         {title}
                     </h1>
                     <p className="contents">
-                        {contents}
+                        {content}
                     </p>
                 </div>
             </div>

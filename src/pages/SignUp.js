@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const SIGN_UP = `http://43.200.183.201:8080/sign-up`;
+const SIGN_UP = `http://43.200.183.201:8080/auth/register`;
 
 const SignUp = () => {
     const url = new URL(window.location.href);
@@ -21,18 +21,22 @@ const SignUp = () => {
         isChecked: false,
     })
     
-    const [isCheckedTerms, setIsCheckedTerms] = useState(null);
-    const [isValidName, setIsValidName] = useState(null);
-    const [isValidUserId, setIsValidUserId] = useState(null);
-    const [isValidPassword, setIsValidPassword] = useState(null);
-    const [isCheckedPassword, setIsCheckedPassword] = useState(null);
-    // const [isDuplicated, setIsDuplicated] = useState(true);
-    
+    const [isCheckedTerms, setIsCheckedTerms] = useState(userInfo.isChecked);
+    const isValidName = userInfo.userName.length > 0;
+    const isValidUserId = userInfo.userId.length > 2 && userInfo.userId.length < 17;
+    const isValidPassword = userInfo.password.length > 7;
+    const isCheckedPassword = userInfo.password === userInfo.checkPassword;  
+
+    const getIsActive = isCheckedTerms && isValidName && isValidUserId && isValidPassword && isCheckedPassword; 
+
+    const [submit, setSubmit] = useState(false);
+
     useEffect(() => {
         if(userInfo.isChecked){
             setIsCheckedTerms(true);
         }
-    }, [userInfo.isChecked])
+        setSubmit(false);
+    }, [userInfo.isChecked, userInfo])
 
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -52,37 +56,12 @@ const SignUp = () => {
     } 
 
     const onSubmit = async() => {
-        setIsCheckedTerms(userInfo.isChecked);
-        //이용약관 동의 여부
-        if(userInfo.isChecked){ 
-            setIsValidName(userInfo.userName.length > 0);
-            //이름 입력 여부
-            if(isValidName){
-                setIsValidUserId((userInfo.userId.length > 2 && userInfo.userId.length < 17));
-                //아이디 3~16자 확인
-                if(isValidUserId){
-                    setIsValidPassword(userInfo.password.length > 7);
-                    //비밀번호 8자 이상
-                        if(isValidPassword){
-                            setIsCheckedPassword(userInfo.password === userInfo.checkPassword);                       
-                        }
-                }
-            }
-        }
-        const getIsActive = userInfo.isChecked && isValidName && isValidUserId && isValidPassword && isCheckedPassword; 
-        console.log(getIsActive);
+        setSubmit(true);
         if(getIsActive){
             try{
                 const {userName, userId, password} = userInfo;
-                const role = null;
-                console.log({userId, userName, password, email, role});
-                await axios.post(SIGN_UP, {userId, userName, password, email, role})
-                .then((res)=>{
-                    const accessToken = res.headers[`authorization`];
-                    const refreshToken = res.headers[`authorization-refresh`];
-                    setCookie("accessToken", accessToken);
-                    setCookie("refreshToken", refreshToken); 
-                })
+                const role = "USER";
+                await axios.post(SIGN_UP, {userId, userName, password, email, role});
                 navigate(`/`);
             } catch(error){
                 alert(error.response.data.message);
@@ -148,11 +127,11 @@ const SignUp = () => {
                 </div>
                 <div className="form_bottom">
                     <div className="check_vaild">
-                        {isCheckedTerms!==null && !isCheckedTerms && <h4 className="text_error">이용약관과 개인정보취급방침에 동의해주세요.</h4>}
-                        {isValidName !==null && !isValidName && <h4 className="text_error">이름을 입력해주세요.</h4>}
-                        {isValidUserId !== null && !isValidUserId && <h4 className="text_error">아이디는 3~16자의 알파벳,숫자,혹은 - _ 으로 이루어져야 합니다.</h4>}
-                        {isValidPassword !==null && !isValidPassword && <h4 className="text_error">비밀번호는 8자 이상으로 이루어져야 합니다.</h4>}
-                        {isCheckedPassword !==null && !isCheckedPassword && <h4 className="text_error">비밀번호가 일치하지 않습니다</h4>}
+                        {submit && !isCheckedTerms && <h4 className="text_error">이용약관과 개인정보취급방침에 동의해주세요.</h4>}
+                        {submit && isCheckedTerms && !isValidName && <h4 className="text_error">이름을 입력해주세요.</h4>}
+                        {submit && isCheckedTerms && isValidName && !isValidUserId && <h4 className="text_error">아이디는 3~16자의 알파벳,숫자,혹은 - _ 으로 이루어져야 합니다.</h4>}
+                        {submit && isCheckedTerms && isValidName && isValidUserId && !isValidPassword && <h4 className="text_error">비밀번호는 8자 이상으로 이루어져야 합니다.</h4>}
+                        {submit && isCheckedTerms && isValidName && isValidUserId && isValidPassword && !isCheckedPassword && <h4 className="text_error">비밀번호가 일치하지 않습니다</h4>}
                         {/* <h4 className="text_red">이미 존재하는 아이디입니다.</h4> */}
                     </div>
                     <div className="buttons">

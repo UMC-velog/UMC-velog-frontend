@@ -1,29 +1,34 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/PostItem.css";
 
-const PostItem = ({id, image, title, content, createdDate, commentsCount, writer, likeCount, isSearch}) => {
+const PostItem = ({id, postImg, title, content, createdDate, commentsCount, userId, likeCount, isSearch}) => {
     const navigate = useNavigate();
 
     const goPost = () => {
-        navigate(`/${writer}/${id}`);
+        navigate(`/${id}`);
+    }
+    const goProfile = () => {
+        navigate(`/profile/${userId}`);
     }
     
     return(
-        <div className="PostItem" onClick={(goPost)}>
-            { isSearch &&
+        <div className="PostItem">
+            {/* { isSearch && */}{
             <div className="user_info">
-                <div className="profile_image">
-                    <img alt={writer} src='https://velog.io/images/user-thumbnail.png'/>
+                <div className="profile_image" onClick={goProfile}>
+                    <img alt={userId} src='https://velog.io/images/user-thumbnail.png'/>
                 </div>
-                <div className="username">
-                        {writer}
+                <div className="username" onClick={goProfile}>
+                        {userId}
                 </div>
             </div> }          
-            { image && <div className="image_section">
-                <img alt={title} src={image}/>
+            { postImg && <div className="image_section" onClick={(goPost)}>
+                <img alt={title} src={postImg}/>
             </div>}
-            <h2>{title}</h2>
-            <p>{content}</p>
+            <div className="contents" onClick={(goPost)}>
+                <h2>{title}</h2>
+                <p>{content}</p>
+            </div>
             {/* tag wrapper */}
             <div className="subinfo">
                 <span>{createdDate.split('-')[0]}년 {createdDate.split('-')[1]}월 {createdDate.split('-')[2][0]}{createdDate.split('-')[2][1]}일</span>

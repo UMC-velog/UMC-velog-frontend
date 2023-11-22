@@ -1,18 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import "../styles/CardItem.css";
 
-const CardItem = ({id, postImg, title, content, createdDate, comments, writer, likeCount}) => {
+const CardItem = ({id, postImg, title, content, createdDate, comments, writerId, likeCount}) => {
     const navigate = useNavigate();
     const goPost = () => {
-        navigate(`/${writer}/${id}`);
+        navigate(`/${id}`);
+    }
+    const goProfile = () => {
+        navigate(`/profile/${writerId}`);
     }
 
     return(
-        <div className="CardItem" onClick={(goPost)}>
-            {postImg && <div className="image_section">
+        <div className="CardItem">
+            {postImg && <div className="image_section" onClick={(goPost)}>
                 <img alt={title} src={postImg}/>
             </div>}
-            <div className="content_section">
+            <div className="content_section" onClick={(goPost)}>
                 <h4 className="post_title">{title}</h4>
                 <p className="post_content">{content}</p>
                 <div className="post_info"> 
@@ -22,11 +25,11 @@ const CardItem = ({id, postImg, title, content, createdDate, comments, writer, l
                 </div>
             </div>
             <div className="user_section">
-                <div className="left_col">
-                    <img alt={writer} src='https://velog.io/images/user-thumbnail.png'/>
+                <div className="left_col" onClick={(goProfile)}>
+                    <img alt={writerId} src='https://velog.io/images/user-thumbnail.png'/>
                     <span className="username">
                         by
-                        <b>{writer}</b>
+                        <b>{writerId}</b>
                     </span>
                 </div>
                 <div className="right_col">
